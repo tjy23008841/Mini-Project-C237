@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for better UI -->
+    <style>
+        body {
+            background-color: #f1e5e3;
+        }
+        .navbar {
+            background-color: #E1c5c0;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #f1e5e3;
+        }
+        h1 {
+            color: #d8b0b6;
+        }
+        .btn-custom {
+            background-color: #E1c5c0;
+            border-color: #E1c5c0;
+            color: #ffffff; /* Text color */
+        }
+        .btn-custom:hover,
+        .btn-custom:focus {
+            background-color: #d1b3ae; /* Darker shade on hover/focus */
+            border-color: #d1b3ae;
+            color: #ffffff; /* Text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Quiz Questions</h1>
+        <form action="/score" method="POST">
+            <% questions.forEach(question => { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= question.question_text %></h5>
+                        <% if (question.question_type === 'multiple choice' && question.options && question.options.length > 0) { %>
+                            <% question.options.forEach(option => { %>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="answers[<%= question.question_id %>]" id="option_<%= option.option_id %>" value="<%= option.option_id %>" required>
+                                    <label class="form-check-label" for="option_<%= option.option_id %>"><%= option.option_text %></label>
+                                </div>
+                            <% }); %>
+                        <% } else if (question.question_type === 'true/false' && question.options && question.options.length > 0) { %>
+                            <!-- Render true/false options -->
+                            <% question.options.forEach(option => { %>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="answers[<%= question.question_id %>]" id="option_<%= option.option_id %>" value="<%= option.option_id %>" required>
+                                    <label class="form-check-label" for="option_<%= option.option_id %>"><%= option.option_text %></label>
+                                </div>
+                            <% }); %>
+                        <% } else if (question.question_type === 'short answer') { %>
+                            <!-- Render input for short answer -->
+                            <input type="text" name="answers[<%= question.question_id %>]" class="form-control" required>
+                        <% } else { %>
+                            <!-- Handle other question types or no options available -->
+                            <p>No options available for this question.</p>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %>
+            <button type="submit" class="btn btn-custom">Finish Quiz</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

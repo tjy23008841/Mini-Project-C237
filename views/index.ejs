@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for better UI -->
+    <style>
+        body {
+            background-color: #f1e5e3;
+        }
+        .navbar {
+            background-color: #E1c5c0;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #f1e5e3;
+        }
+        h1 {
+            color:#d8b0b6
+        }
+        .btn-custom {
+            background-color: #E1c5c0;
+            border-color: #E1c5c0;
+            color: #ffffff; /* Text color */
+        }
+        .btn-custom:hover,
+        .btn-custom:focus {
+            background-color: #d1b3ae; /* Darker shade on hover/focus */
+            border-color: #d1b3ae;
+            color: #ffffff; /* Text color */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <b><i>Quizzeria</i></b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addQuiz">Create Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deleteQuiz">Delete Quiz</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="container mt-4">
+      <div class="row justify-content-end">
+          <div class="col-auto">
+              <form class="form-inline login-form" onsubmit="handleLogin(event)">
+                  <div class="form-group">
+                      <input type="text" class="form-control mr-2" id="username" placeholder="Username" required>
+                  </div>
+                  <button type="submit" class="btn btn-custom">Enter</button>
+              </form>
+          </div>
+      </div>
+  </div>
+    <!-- Content Section -->
+    <div class="container mt-4">
+        <h1>Welcome to Quizzeria</h1>
+        <p>An interactive learning platform designed to gamify the educational experience.</p>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="https://news.harvard.edu/wp-content/uploads/2022/11/iStock-mathproblems.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Math Quizzes</h5>
+                        <p class="card-text">Cool Math and Games for Students</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7aUU_-wkSj27H5_2Sl-IW91O8POxZuU3Vfw&s" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Science Quizzes</h5>
+                        <p class="card-text">Cool Science and Games for Students</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNSor5J_qNMqO_3r_PuUhNkerZqfdbZUVK3w&s" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">History Quizzes</h5>
+                        <p class="card-text">Cool History and Games for Students</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for dropdowns, toggles, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function handleLogin(event) {
+          event.preventDefault();
+          const username = document.getElementById('username').value;
+          if (username) {
+              const startQuiz = confirm(`Welcome, ${username}! Select a quiz to start!`);
+              if (startQuiz) {
+                  window.location.href = `/start-quiz?username=${username}`;
+              } else {
+                  window.location.href = `/user-scores?username=${username}`;
+              }
+          }
+      }
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f1e5e3;
+        }
+        .navbar {
+            background-color: #E1c5c0;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #f1e5e3;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #d8b0b6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"> <b><i>Quizzeria</i></b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/start-quiz">Start Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Create Quiz</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Hi, <strong><%= username %></strong>! Select a quiz to start</h1>
+        <div class="container mt-4">
+            <div class="row">
+                <% quizzes.forEach(quiz => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="https://img.freepik.com/premium-vector/quiz-comic-pop-art-style_175838-505.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= quiz.name %></h5>
+                                <p class="card-text">Description of the quiz.</p>
+                                <a href="/quiz" class="btn btn-custom">Start Quiz</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

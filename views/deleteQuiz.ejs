@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for better UI -->
+    <style>
+        body {
+            background-color: #f1e5e3;
+        }
+        .navbar {
+            background-color: #E1c5c0;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #f1e5e3;
+        }
+        h1 {
+            color: #d8b0b6;
+        }
+        .btn-custom {
+            background-color: #E1c5c0;
+            border-color: #E1c5c0;
+            color: #ffffff; /* Text color */
+        }
+        .btn-custom:hover,
+        .btn-custom:focus {
+            background-color: #d1b3ae; /* Darker shade on hover/focus */
+            border-color: #d1b3ae;
+            color: #ffffff; /* Text color */
+        }
+    </style>
+    <!-- Custom JavaScript for confirmation prompt -->
+    <script>
+        function confirmDeletion(event) {
+            if (!confirm("Do you want to delete the quiz?")) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#"> <b><i>Quizzeria</i></b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addQuiz">Create Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/deleteQuiz">Delete Quiz</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+  <div class="container">
+    <br>
+    <div class="text-center"><h2>Delete Quiz</h2></div>
+    <br>
+    <ul class="list-group">
+      <% quizzes.forEach(quiz => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <h5><%= quiz.title %></h5>
+            <p><%= quiz.description %></p>
+          </div>
+          <form action="/deleteQuiz" method="POST" class="mb-0" onsubmit="confirmDeletion(event)">
+            <input type="hidden" name="quizId" value="<%= quiz.quiz_id %>">
+            <button type="submit" class="btn btn-custom">Delete</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+</body>
+</html>
