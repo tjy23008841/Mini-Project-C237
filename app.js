@@ -11,10 +11,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Create MySQL connection
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'quizzeria'
+// host: 'localhost',
+//  user: 'root',
+//  password: '',
+//  database: 'quizzeria'
+host: 'db4free.net',
+user: 'quizzeria_',
+password: 'Jungkook1997',
+database: 'quizzeria'
 });
 
 // Connect to MySQL
