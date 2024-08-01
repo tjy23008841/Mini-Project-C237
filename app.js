@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 
-// Set EJS as the view engine
+// Set EJS as the view engine //
 app.set('view engine', 'ejs');
 
 // Middleware to parse url-encoded bodies
